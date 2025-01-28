@@ -1,2 +1,1 @@
-# FD_from_texts
-Fault diagnosis based on texts that generated from CWRU bearing data
+# Fault Diagnosis Using Text Feature Data Analysis on CWRU Bearing Dataset for the upcoming CSME-CFDSC-CSR 2025
