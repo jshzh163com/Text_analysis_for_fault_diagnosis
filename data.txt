@@ -1,0 +1,5 @@
+Mean is 0.01, Std is 0.07, Sqrt is 0.08, Maximum is 0.22, Skewness is -0.16, Kurtosis is -0.24, Frequency mean is 0.94, Frequency std is 2.24, Frequency sqrt is 2.43 Label: 0
+Mean is 0.01, Std is 0.07, Sqrt is 0.07, Maximum is 0.27, Skewness is -0.17, Kurtosis is 0.01, Frequency mean is 0.91, Frequency std is 2.21, Frequency sqrt is 2.39 Label: 0
+Mean is 0.01, Std is 0.07, Sqrt is 0.07, Maximum is 0.21, Skewness is 0.08, Kurtosis is -0.30, Frequency mean is 0.90, Frequency std is 2.16, Frequency sqrt is 2.33 Label: 0
+Mean is 0.01, Std is 0.08, Sqrt is 0.08, Maximum is 0.21, Skewness is 0.08, Kurtosis is -0.13, Frequency mean is 1.00, Frequency std is 2.28, Frequency sqrt is 2.49 Label: 0
+Mean is 0.01, Std is 0.08, Sqrt is 0.08, Maximum is 0.23, Skewness is -0.16, Kurtosis is -0.03, Frequency mean is 1.00, Frequency std is 2.34, Frequency sqrt is 2.55 Label: 0
