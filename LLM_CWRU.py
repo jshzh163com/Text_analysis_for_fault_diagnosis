@@ -119,7 +119,7 @@ with torch.no_grad():
     acc_tr /= len(train_loader.dataset)
     print(f"Train acc: {acc_tr:.4f}")
 
-epoch_acc_te = 0
+acc_te = 0
 with torch.no_grad():
     total = 0
     for idx, (inputs, labels) in enumerate(test_loader):
