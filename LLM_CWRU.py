@@ -85,7 +85,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 model.to(device)
 
-for epoch in range(50):
+for epoch in range(100):
     model.train()
     total_loss = 0.0
     epoch_acc = 0
@@ -101,32 +101,43 @@ for epoch in range(50):
         loss.backward()
         optimizer.step()
         total_loss += loss.item()
+    model.eval()
+    with torch.no_grad():
+        epoch_acc_te = 0
+        for idx, (inputs, labels) in enumerate(test_loader):
+            inputs = inputs.unsqueeze(1).to(device)
+            labels = labels.to(device)
+            output = model(inputs)
+            correct = torch.eq(output.argmax(
+                dim=1), labels).float().sum().item()
+            epoch_acc_te += correct
+        epoch_acc_te /= len(test_loader.dataset)
+
     total_loss /= len(train_loader.dataset)
     epoch_acc /= len(train_loader.dataset)
-    print(f"Epoch {epoch+1}, Loss: {total_loss:.4f}, Acc: {epoch_acc:.4f}")
+    print(
+        f"Epoch {epoch+1}, Loss: {total_loss:.4f}, Train Acc: {epoch_acc:.4f}, Test Acc: {epoch_acc_te:.4f}")
 
-model.eval()
-acc_tr = 0
-with torch.no_grad():
-    total = 0
-    for idx, (inputs, labels) in enumerate(train_loader):
-        inputs = inputs.unsqueeze(1).to(device)
-        labels = labels.to(device)
-        output = model(inputs)
-        correct_train = torch.eq(output.argmax(
-            dim=1), labels).float().sum().item()
-        acc_tr += correct_train
-    acc_tr /= len(train_loader.dataset)
-    print(f"Train acc: {acc_tr:.4f}")
+# model.eval()
+# epoch_acc_tr = 0
+# with torch.no_grad():
+#     for idx, (inputs, labels) in enumerate(train_loader):
+#         inputs = inputs.unsqueeze(1).to(device)
+#         labels = labels.to(device)
+#         output = model(inputs)
+#         correct_train = torch.eq(output.argmax(
+#             dim=1), labels).float().sum().item()
+#         epoch_acc_tr += correct_train
+#     epoch_acc_tr /= len(train_loader.dataset)
+#     print(f"Train acc: {epoch_acc_tr:.4f}")
 
-acc_te = 0
-with torch.no_grad():
-    total = 0
-    for idx, (inputs, labels) in enumerate(test_loader):
-        inputs = inputs.unsqueeze(1).to(device)
-        labels = labels.to(device)
-        output = model(inputs)
-        correct = torch.eq(output.argmax(dim=1), labels).float().sum().item()
-        acc_te += correct
-    acc_te /= len(test_loader.dataset)
-    print(f"Test acc: {acc_te:.4f}")
+# epoch_acc_te = 0
+# with torch.no_grad():
+#     for idx, (inputs, labels) in enumerate(test_loader):
+#         inputs = inputs.unsqueeze(1).to(device)
+#         labels = labels.to(device)
+#         output = model(inputs)
+#         correct = torch.eq(output.argmax(dim=1), labels).float().sum().item()
+#         epoch_acc_te += correct
+#     epoch_acc_te /= len(test_loader.dataset)
+#     print(f"Test acc: {epoch_acc_te:.4f}")
