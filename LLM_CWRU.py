@@ -106,8 +106,7 @@ for epoch in range(50):
     print(f"Epoch {epoch+1}, Loss: {total_loss:.4f}, Acc: {epoch_acc:.4f}")
 
 model.eval()
-epoch_acc_tr = 0
-correct_train = 0
+acc_tr = 0
 with torch.no_grad():
     total = 0
     for idx, (inputs, labels) in enumerate(train_loader):
@@ -116,11 +115,11 @@ with torch.no_grad():
         output = model(inputs)
         correct_train = torch.eq(output.argmax(
             dim=1), labels).float().sum().item()
-        epoch_acc_tr += correct_train
-    epoch_acc_tr /= len(train_loader.dataset)
-    print(f"Train acc: {epoch_acc_tr:.4f}")
+        acc_tr += correct_train
+    acc_tr /= len(train_loader.dataset)
+    print(f"Train acc: {acc_tr:.4f}")
 
-correct = 0
+epoch_acc_te = 0
 with torch.no_grad():
     total = 0
     for idx, (inputs, labels) in enumerate(test_loader):
@@ -128,6 +127,6 @@ with torch.no_grad():
         labels = labels.to(device)
         output = model(inputs)
         correct = torch.eq(output.argmax(dim=1), labels).float().sum().item()
-        epoch_acc += correct
-    epoch_acc /= len(test_loader.dataset)
-    print(f"Test acc: {epoch_acc:.4f}")
+        acc_te += correct
+    acc_te /= len(test_loader.dataset)
+    print(f"Test acc: {acc_te:.4f}")
