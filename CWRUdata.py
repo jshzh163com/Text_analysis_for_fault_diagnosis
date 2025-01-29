@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Feb  7 13:18:09 2023
 
-@author: zhua079
-"""
 import os
 import numpy as np
 from scipy.io import loadmat
