@@ -15,11 +15,9 @@ from torch.utils.data import Dataset, DataLoader
 # Tokenizer
 tokenizer = get_tokenizer("basic_english")
 
-
 def yield_tokens(sentences):
     for sentence in sentences:
         yield tokenizer(sentence)
-
 
 input_file = "CWRU_sentences_with_labels_load_1.txt"
 
@@ -54,7 +52,6 @@ train_knn = knn.fit(train_data, train_label)
 train_knn.score(train_data, train_label)
 train_knn.score(test_data, test_label)
 
-
 class CustomDataset(Dataset):
     def __init__(self, data, labels):
         # Convert to PyTorch tensor
@@ -79,7 +76,7 @@ test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# CNN 5 layers
+# CNN model
 model = CNN()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
