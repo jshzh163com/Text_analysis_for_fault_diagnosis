@@ -11,9 +11,12 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
+import re
 
-# Tokenizer
-tokenizer = get_tokenizer("basic_english")
+def custom_tokenizer(text):
+    # Matches float numbers, integers, and words
+    return re.findall(r'\d+\.\d+|\d+|[a-zA-Z_]+', text)
+tokenizer = custom_tokenizer
 
 def yield_tokens(sentences):
     for sentence in sentences:
@@ -38,7 +41,6 @@ vocab = build_vocab_from_iterator(
 
 indexed_sentences = [vocab(tokenizer(sentence)) for sentence in sentences]
 ind_sentences = np.array(indexed_sentences)
-
 
 train_data, test_data, train_label, test_label = train_test_split(
     ind_sentences, labels, test_size=0.2, shuffle=True)
@@ -72,7 +74,6 @@ train_dataset, test_dataset = train_test_split(
     dataset, test_size=0.2, shuffle=True)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
-
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
