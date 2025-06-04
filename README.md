@@ -1,1 +1,1 @@
-# Fault Diagnosis Using Text Analysis on CWRU Bearing Dataset for the upcoming CSME-CFDSC-CSR 2025
+# Fault Diagnosis Using Text Analysis on the CWRU Bearing Dataset for the CSME-CFDSC-CSR 2025
